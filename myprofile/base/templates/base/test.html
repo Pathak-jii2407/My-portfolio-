@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hover Effect</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .container-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+    padding: 20px;
+    margin: 100px;
+    box-shadow: 0px 0px 1px 0.1px black;
+    background-size: contain;
+}
+
+.box {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+#box1 {
+    background-image: url("img/lordbuddha.gif");
+}
+
+#box2 {
+    background-image: url("img/gym.gif");
+}
+
+#box3 {
+    background-image: url("img/employer.gif");
+}
+
+.box:hover {
+    transform: scale(1.05);
+}
+
+#display-box {
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    box-shadow: 0px 0px 1px 
+}
+    </style>
+</head>
+<body>
+    <div class="container-box">
+        <div class="box" id="box1"></div>
+        <div class="box" id="box2"></div>
+        <div class="box" id="box3"></div>
+    </div>
+    <div id="display-box"></div>
+    <script src="script.js">
+        document.addEventListener('DOMContentLoaded', () => {
+    const data = {
+        box1: {
+            title: "Meditation: A Path to Inner Peace and Well-being",
+            content: "Meditation is a practice that involves focusing the mind and eliminating distractions to achieve a state of heightened awareness and inner peace. It has been practiced for thousands of years and is a key component of various spiritual and wellness traditions worldwide, including Buddhism, Hinduism, and Yoga. In recent years, meditation has gained widespread recognition in the Western world for its numerous mental and physical health benefits."
+        },
+        box2: {
+            title: "The Gym: A Gateway to Physical Fitness and Well-being",
+            content: "The gym, short for gymnasium, is a place equipped with various exercise machines and weights designed to help people improve their physical fitness. In contemporary society, the gym has become a central hub for individuals seeking to enhance their health, build muscle, lose weight, and improve overall wellness."
+        },
+        box3: {
+            title: "Programming: The Art and Science of Creating Software",
+            content: "Programming, also known as coding, is the process of designing and building executable computer software to accomplish specific tasks. It involves writing instructions in a programming language that a computer can interpret and execute. Programming is a fundamental skill in the digital age, driving innovation, automation, and technological advancements across various fields."
+        }
+    };
+
+    const displayBox = document.getElementById('display-box');
+
+    const boxes = document.querySelectorAll('.box');
+    boxes.forEach(box => {
+        box.addEventListener('mouseover', () => {
+            const boxId = box.id;
+            if (data[boxId]) {
+                displayBox.innerHTML = `<h2>${data[boxId].title}</h2><p>${data[boxId].content}</p>`;
+            }
+        });
+
+        box.addEventListener('mouseout', () => {
+            displayBox.innerHTML = '';
+        });
+    });
+});
+
+    </script>
+</body>
+</html>

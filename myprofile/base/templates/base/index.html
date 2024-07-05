@@ -1,0 +1,751 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+    {% load static%}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio || Ved</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            
+        }
+
+        
+        .navbar {
+            width: 100%;
+            background-color: #0051a9;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 50px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar-links {
+            list-style-type: none;
+            display: flex;
+        }
+
+        .navbar-links li {
+            margin: 0 10px;
+        }
+
+        .navbar-links a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            background-color: #fff;
+            margin: 4px 0;
+        }
+
+        .section1{
+            background-image: url('https://wallpaperaccess.com/full/3094326.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            scroll-behavior: smooth;
+        }
+        /*background-image: url('https://wallpaperaccess.com/full/1112769.jpg');            background-image: url('{%static "img/wallpaper.jpg" %}');*/
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+            text-align: center;
+            
+        }
+
+        .image-container {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .details {
+            padding: 0 20px;
+            width: 50%;
+        }
+
+        .details h2 {
+            font-size: 100px;
+            color: #ffffff;
+            margin: 10px 0;
+            font-size: 24px;
+        }
+
+        .details p {
+            margin: 15px 10px;
+            color: #ffffff;
+        }
+        
+
+        .container-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            justify-content: center;
+            padding: 20px;
+            margin: 100px;
+            box-shadow: 0px 0px 1px 0.1px black;
+
+            background-size: contain;
+        }
+        .container-box {
+            color: white;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box1 {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            background-image: url("{%static 'img/lordbuddha.gif'%}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }.box2 {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            background-image: url("{%static 'img/gym.gif'%}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }.box3 {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            background-image: url("{%static 'img/employer.gif'%}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .box1:hover,.box2:hover,.box3:hover {
+            transform: scale(1.05);
+        }
+
+        .box1:hover .overlay {
+            opacity: 1;
+            overflow: scroll;
+            padding: 10px;
+        }.box2:hover .overlay {
+            opacity: 1;
+            overflow: scroll;
+            padding: 10px;        }.box3:hover .overlay {
+                opacity: 1;
+            overflow: scroll;
+            padding: 10px;        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+       
+
+        .information {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin: 20px;
+            margin-top: 5pc;
+            background-color: #10146d86;
+
+            
+        }
+
+        .ml-img {
+            flex: 0 0 auto;
+            margin: 50px;
+
+        }
+        .ml-img:hover {
+            box-shadow: 1px 1px 10px 1px black;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            transform: scale(1.05);
+        }
+
+        .ml-img img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transform: scale(1.05);
+            
+        }
+
+        .ml-text {
+            flex: 1; 
+        }
+        .ml-text p{
+            color: white;
+            font-size: large;
+            padding: 1px;
+        }
+
+        .section2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("{%static 'img/review.jpeg'%}");
+            background-repeat: no-repeat;
+        }
+
+        .survey-container {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        fieldset {
+            margin-bottom: 20px;
+            border: none;
+        }
+
+        legend {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+
+        .resume-section{
+            background-image: url("{%static 'img/resumepage.jpg'%}");
+            background-repeat: no-repeat;
+            background-size: 70%;
+        }
+
+
+        .resume {
+            max-width: 600px;
+            margin: 10px auto;
+            background-color: #e0dddd;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 36px;
+            color: #3b3939;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .contact {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .resume h2 {
+            font-size: 24px;
+            color: #625d5d;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+
+        .resume p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .resume .description {
+            margin-bottom: 20px;
+        }
+
+        .resume ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        .resume a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .resume a:hover {
+            color: #0056b3;
+        }
+
+        .coursework {
+            margin-top: 10px;
+            font-style: italic;
+            color: #777;
+        }
+
+        .myprojects{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+            background-image: url('https://i.pinimg.com/736x/42/ae/9d/42ae9d9f782d344697dcc661350de23c.jpg');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        
+
+        @media (max-width: 768px) {
+            .survey-container {
+                width: 90%;
+                padding: 10px;
+            }
+
+            textarea {
+                height: 80px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .survey-container {
+                padding: 5px;
+            }
+
+            textarea {
+                height: 60px;
+            }
+        }
+
+
+
+        @media (max-width: 768px) {
+            .information {
+                flex-direction: column; 
+                text-align: center; 
+            }
+
+            .ml-img {
+                margin-right: 0;
+                margin-bottom: 20px; 
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 10px;
+            }
+            .image-container {
+                margin-top: 50px;
+                width: 150px;
+                height: 150px;
+            }
+            .details{
+                font-size: larger;
+                width: 100%;
+            }
+            .details h2 {
+                font-size: 20px;
+            }
+            .box1,.box2,.box3 {
+                width: 45%;
+            }
+            
+            
+            }
+            
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 10px;
+            }
+            .image-container {
+                width: 120px;
+                height: 120px;
+            }
+            .details h2 {
+                font-size: 18px;
+            }
+            .box1,.box2,.box3 {
+                width: 100%;
+            }
+            
+        }
+       
+    span{
+        font-size: large;
+        font-weight: bold;
+        color: #ff0000;
+    }
+
+
+    .vip-footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .footer-content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .vip-footer p {
+        margin-bottom: 10px;
+    }
+
+    .vip-footer ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .vip-footer ul li {
+        display: inline;
+        margin-right: 20px;
+    }
+
+    .vip-footer ul li a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .vip-footer ul li a:hover {
+        color: #007bff;
+    }
+
+        
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">Hi there 😊</div>
+        <ul class="navbar-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+    <br>
+    <section class="section1">
+
+        <div class="container">
+            <div class="image-container">
+                <img src="{%static 'img/ved.png'%}" alt="Profile Image">
+            </div>
+            <div class="details">
+                <h2>Ved Prakash Pathak</h2>
+                <p>Hello! I'm <span>Ved Prakash Pathak</span>, currently pursuing a Bachelor's degree in <span>Computer Science</span> from RGPV.
+                    My passion lies in the realms of data science and machine learning,
+                    where I aspire to make significant contributions as a future <span>data scientist</span> and <span>ML engineer</span>.
+                    Through my academic journey and <span>hands-on experience</span>,
+                    I am dedicated to acquiring the <span>skills</span> and knowledge necessary to excel in this <span>dynamic</span> and <span>exciting </span>field.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="container-box">
+        <div class="box1">
+            <div class="overlay">
+                <div>                <h3>Meditation: A Path to Inner Peace and Well-being</h3> <br><br><br>
+                </div>
+                <div><p>
+                    Meditation<br><br><br><br><br><br><br><br> is a practice that involves focusing the mind and eliminating distractions
+                 to achieve a state of heightened awareness and inner peace. It has been practiced for
+                  thousands of years and is a key component of various spiritual and wellness traditions
+                   worldwide, including Buddhism, Hinduism, and Yoga. In recent years, meditation has gained
+                    widespread recognition in the Western world for its numerous mental and physical health benefits.
+
+                </p></div>
+                
+                
+            </div>
+        </div>
+        <div class="box2">
+            <div class="overlay">
+                <div>                <h3>The Gym: A Gateway to Physical Fitness and Well-being</h3><br><br><br><br>
+                </div>
+                <div> <p>The gym, short for gymnasium, is a place equipped with various
+                    exercise machines and weights designed to help people improve
+                     their physical fitness. In contemporary society, the gym has
+                      become a central hub for individuals seeking to enhance their
+                       health, build muscle, lose weight, and improve overall wellness.</p></div>
+               
+            </div>
+        </div>
+        <div class="box3">
+            <div class="overlay">
+                <div><br><br><br><br><br><br><br><br><h3>Programming: The Art and Science of Creating Software</h3>   <br><br><br> 
+                </div>
+                <div><p>Programming, also known as coding, is the process of designing
+                    and building executable computer software to accomplish specific tasks.
+                     It involves writing instructions in a programming language that a 
+                     computer can interpret and execute. Programming is a fundamental skill 
+                     in the digital age, driving innovation, automation, and technological 
+                     advancements across various fields.</p></div>
+                    
+            </div>
+        </div>
+    </div>
+
+    <div class="information">
+        <div class="ml-img"><img src="{%static 'img//ml.jpg'%}" alt="Profile Image" width="500" height="300"></div>
+        <div class="ml-text">
+            <p>
+                Machine Learning (<span>ML</span>) is a branch of artificial intelligence (<span>AI</span>) that empowers computers to learn from <span>data</span> and improve over time without explicit programming. It revolves around the development of algorithms that enable machines to recognize <span>patterns</span>, make <span>predictions</span>, and perform tasks based on empirical <span>data</span>.
+            </p>
+        </div>
+    </div>
+    <div class="information" style="transform: rotateY(180deg);">
+        <div class="ml-img" style="transform: rotateY(180deg);"><img src="{%static 'img//ml.jpg'%}" alt="Profile Image" width="500" height="300"></div>
+        <div class="ml-text" style="transform: rotateY(180deg);">
+            <p>
+                Machine Learning (<span>ML</span>) is a branch of artificial intelligence (<span>AI</span>) that empowers computers to learn from <span>data</span> and improve over time without explicit programming. It revolves around the development of algorithms that enable machines to recognize <span>patterns</span>, make <span>predictions</span>, and perform tasks based on empirical <span>data</span>.
+            </p>
+        </div>
+    </div>
+    <div class="information">
+        <div class="ml-img"><img src="{%static 'img//ml.jpg'%}" alt="Profile Image" width="500" height="300"></div>
+        <div class="ml-text">
+            <p>
+                Machine Learning (<span>ML</span>) is a branch of artificial intelligence (<span>AI</span>) that empowers computers to learn from <span>data</span> and improve over time without explicit programming. It revolves around the development of algorithms that enable machines to recognize <span>patterns</span>, make <span>predictions</span>, and perform tasks based on empirical <span>data</span>.
+            </p>
+        </div>
+    </div>
+
+    <section class="resume-section">
+        <div class="resume">
+            <header>
+                <h1>Ved Prakash Pathak</h1>
+                <p class="subtitle">Aspiring Data Scientist & Machine Learning Expert</p>
+                <p class="contact"><a href="https://www.linkedin.com/in/ved-parkash-pathak-902b85284/">LinkedIn</a> |
+                    <a href="https://github.com/Pathak-jii2407">GitHub</a>
+                    | ved24072003@gmail.com</p>
+            </header>
+            
+            <section class="objective">
+                <h2>Objective</h2>
+                <p class="description">I am fully invested in my Computer Science degree, with a particular focus on data science and machine learning. The ability to effectively manipulate, clean, and prepare data is paramount before the application of machine learning techniques. This comprehensive approach will undoubtedly lead to a challenging yet rewarding journey.</p>
+            </section>
+            
+            <section class="projects">
+                <h2>Project Experience</h2>
+                <ul>
+                    <li>Built Jarvis, an AI assistant using machine learning (details under wraps for now!)</li>
+                    <li>Developed the entire Nti website (front-end, back-end) and connected it to a SQL server for data organization.</li>
+                    <li>Analyzed exam performance and explored trends with Google Trends.</li>
+                </ul>
+            </section>
+            
+            
+            <section class="skills">
+                <h2>Skills</h2>
+                <ul>
+                    <li>Proficient in Python, SQL</li>
+                    <li>Strong foundation in mathematics and statistics</li>
+                    <li>Data manipulation and analysis</li>
+                    <li>Problem-solving and analytical thinking</li>
+                    <li>Good communication and teamwork abilities</li>
+                </ul>
+            </section>
+            
+            <section class="experience">
+                <h2>Experience</h2>
+                <p><strong>Intern, Data Mining and Analysis</strong><br>
+                NTI Tech Academy, Rewa<br>
+                January 2024 - March 2024</p>
+            </section>
+            
+            
+        </div>
+    </section>
+
+
+    <section class="myprojects">
+    <ul>
+        {% for project in projects %}
+            <li>
+                <a href="{{ project.project_file.url }}" download>{{ project.project_name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    </section>
+
+
+    <section class="section2">
+        <div class="survey-container">
+            <h2>Website Interactivity Survey</h2>
+            <form id="surveyForm" method="POST" action="{% url 'survey_submit' %}">
+                {% csrf_token %}
+                <fieldset>
+                    <legend>Rate Website Interactivity:</legend>
+                    <label>
+                        <input type="radio" name="rating" value="3" required>
+                        😀 
+                    </label>
+                    <label>
+                        <input type="radio" name="rating" value="2">
+                        😐 
+                    </label>
+                    <label>
+                        <input type="radio" name="rating" value="1">
+                        😢 
+                    </label>
+                </fieldset>
+                
+                <fieldset>
+                    <legend>Comments (Optional):</legend>
+                    <textarea id="comments" name="comments" placeholder="Please share any suggestions or comments on how we can improve the website's interactivity."></textarea>
+                </fieldset>
+                
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </section>
+
+
+
+
+
+
+    <footer class="vip-footer">
+        <div class="footer-content">
+            <p>&copy; Ved Prakash Pathak. All rights reserved.</p>
+            <ul>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}">
+        document.getElementById('surveyForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const rating = document.querySelector('input[name="rating"]:checked');
+        
+        const comments = document.getElementById('comments').value.trim();
+        
+        if (!rating) {
+            alert('Please select a rating before submitting.');
+            return;
+        }
+        
+        const surveyData = {
+            rating: rating.value,
+            comments: comments
+        };
+        
+
+        console.log('Survey Data:', surveyData);
+        
+        document.getElementById('surveyForm').reset();
+    });
+
+    </script>
+</body>
+</html>
